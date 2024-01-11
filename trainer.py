@@ -5,7 +5,7 @@ assert tf.__version__.startswith('2')
 from mediapipe_model_maker import gesture_recognizer
 
 
-dataset_path = "rps_data_sample"
+dataset_path = "dataset"
 
 
 print(dataset_path)
@@ -15,7 +15,6 @@ for i in os.listdir(dataset_path):
     labels.append(i)
 print(labels)
 
-NUM_EXAMPLES = 5
 
 data = gesture_recognizer.Dataset.from_folder(
     dirname=dataset_path,
@@ -31,6 +30,8 @@ model = gesture_recognizer.GestureRecognizer.create(
     validation_data=validation_data,
     options=options
 )
+
+
 
 loss, acc = model.evaluate(test_data, batch_size=1)
 print(f"Test loss:{loss}, Test accuracy:{acc}")
